@@ -80,4 +80,10 @@ ggplot(data = data.frame(rotated(kpca_tan), Ecotype),
   theme_minimal()
 
 
+#Equivalently with function plot_kpca2D
+
+plot_kpca2D(kpca_tan, groups = Genetic_Cluster)
+plot_kpca2D(kpca_tan, groups = Ecotype)
+
+
 }

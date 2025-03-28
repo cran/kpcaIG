@@ -4,14 +4,16 @@
 \alias{plot_kpca2D}
 \title{2D Kernel PCA Plot with Variables Representation}
 \usage{
-plot_kpca2D(kpca_result, target_variable, groups = NULL, scale = 100, 
+plot_kpca2D(kpca_result, target_variable = NULL, groups = NULL, scale = 100, 
   components = c(1, 2), arrow_col = "#D3D3D3", 
-  main_title = "Kernel principal component analysis")
+  main_title = "Kernel principal component analysis",
+  point_size = 2, arrow_thickness = 0.5, text_size = 16, 
+  legend_text_size = 11, axis_text_size = 12)
 }
 \arguments{
 \item{kpca_result}{The result of the previously obtained kernel PCA analysis}
 
-\item{target_variable}{A string indicating the name of the variable of interest to visualize as arrows on the kernel PCA plot.}
+\item{target_variable}{A string indicating the name of the variable of interest to visualize as arrows on the kernel PCA plot. Default: NULL}
 
 \item{groups}{A vector indicating the grouping of data points, if applicable. Default: NULL}
 
@@ -20,8 +22,13 @@ plot_kpca2D(kpca_result, target_variable, groups = NULL, scale = 100,
 \item{components}{A numeric vector of length 2 specifying the indices of the components to plot. Default: c(1, 2)}
 
 \item{arrow_col}{Colour of the arrows. Default: '#D3D3D3'}
-
 \item{main_title}{Graph title. Default: "Kernel principal component analysis"}
+\item{point_size}{Sample points size. Default: 2}
+\item{arrow_thickness}{Arrows size. Default: 0.5}
+\item{text_size}{Text size. Default: 16}
+\item{legend_text_size}{Legend text size. Default: 11}
+\item{axis_text_size}{Axes text size. Default: 12}
+
 
 }
 \value{
@@ -50,11 +57,14 @@ kpca_tan <-  kernelpca(as.matrix(Transcriptomics_Stems_s),
 kpca_ig_tan <- kpca_igrad(kpca_tan, dim = c(1,2))
 head(kpca_ig_tan)
 
+# Visualize the kpca plot.
+plot_kpca2D(kpca_tan, groups = Ecotype)
+
 # Visualize the most relevant variable (gene) according to kpca_igrad, "AT4G12060".
 
 plot_kpca2D(kpca_tan, "AT4G12060", groups = Ecotype, scale = 1000, components = c(1, 2))
 
-# Visualize using the second and third components
+# Visualize using the second and third component
 
 plot_kpca2D(kpca_tan, "AT4G12060", groups = Ecotype, scale = 1000, components = c(2, 3))
 

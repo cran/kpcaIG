@@ -4,13 +4,13 @@
 \alias{plot_kpca3D}
 \title{3D Kernel PCA Plot with Variables Representation}
 \usage{
-plot_kpca3D(kpca_result, target_variable, groups, scale=1, 
+plot_kpca3D(kpca_result, target_variable = NULL, groups, scale=1, 
 type = "s", size = 3/4, arrow_col = "#999999", 
 angles = 12, main = NULL)
 }
 \arguments{
 \item{kpca_result}{The result of the previously obtained kernel PCA analysis.}
-\item{target_variable}{A string indicating the name of the variable to visualize as arrows on the kernel PCA plot.}
+\item{target_variable}{A string indicating the name of the variable to visualize as arrows on the kernel PCA plot. Default: NULL}
 \item{groups}{A vector indicating the grouping of data points, if applicable. Default: NULL}
 \item{scale}{Coefficient to adjust the lengths of the arrows. Default 1}
 \item{type}{A character indicating the type of point for the observations.
@@ -48,6 +48,11 @@ kpca_tan <-  kernelpca(as.matrix(Transcriptomics_Stems_s),
 
 kpca_ig_tan <- kpca_igrad(kpca_tan, dim = c(1,2))
 head(kpca_ig_tan)
+
+
+# Visualize the kpca plot.
+
+plot_kpca3D(kpca_tan, groups = Ecotype)
 
 #Visualize the most relevant variable (gene) according to kpca_igrad, "AT4G12060". 
 
